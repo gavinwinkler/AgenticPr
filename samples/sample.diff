@@ -1,0 +1,31 @@
+diff --git a/src/Orders/Services/OrderService.cs b/src/Orders/Services/OrderService.cs
+index 1111111..2222222 100644
+--- a/src/Orders/Services/OrderService.cs
++++ b/src/Orders/Services/OrderService.cs
+@@ -10,4 +10,13 @@ namespace Orders.Services
+         public Order CreateOrder(string customer)
+         {
++            var id = Guid.NewGuid();
++            try
++            {
++                _repository.Insert(id, customer);
++            }
++            catch
++            {
++            }
++            return new Order(id, customer);
+             throw new NotImplementedException();
+         }
+diff --git a/src/web/userClient.ts b/src/web/userClient.ts
+index 3333333..4444444 100644
+--- a/src/web/userClient.ts
++++ b/src/web/userClient.ts
+@@ -4,3 +4,10 @@ export class UserClient {
+   private readonly base = '/api';
+   constructor(private http: HttpClient) {}
++  createUser(name: string): string {
++    const id = crypto.randomUUID();
++    this.http.post('/users', { id, name }).catch(() => {});
++    return id;
++  }
+ }

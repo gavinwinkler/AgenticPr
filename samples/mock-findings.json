@@ -1,0 +1,44 @@
+[
+  {
+    "reviewer": "blind-hunter",
+    "severity": "high",
+    "filePath": "src/Orders/Services/OrderService.cs",
+    "line": 12,
+    "title": "Guid.NewGuid() forbidden",
+    "detail": "Use Guid.CreateVersion7() (UUIDv7).",
+    "ruleId": "hard-rule-3-uuidv7"
+  },
+  {
+    "reviewer": "code-reviewer",
+    "severity": "high",
+    "filePath": "src/Orders/Services/OrderService.cs",
+    "line": 17,
+    "title": "Empty catch swallows exception",
+    "detail": "Log with a correlationId and rethrow; do not silently suppress."
+  },
+  {
+    "reviewer": "code-reviewer",
+    "severity": "high",
+    "filePath": "src/web/userClient.ts",
+    "line": 7,
+    "title": "crypto.randomUUID() is UUIDv4",
+    "detail": "Use a UUIDv7 generator (e.g. uuidv7()).",
+    "ruleId": "hard-rule-3-uuidv7"
+  },
+  {
+    "reviewer": "edge-case-hunter",
+    "severity": "medium",
+    "filePath": "src/web/userClient.ts",
+    "line": 8,
+    "title": "Swallowed promise rejection",
+    "detail": "POST failure is dropped by .catch(() => {}); surface or handle it."
+  },
+  {
+    "reviewer": "code-reviewer",
+    "severity": "low",
+    "filePath": "docs/onboarding.md",
+    "line": null,
+    "title": "File-level finding without a line",
+    "detail": "Exercises the body-only path (no inline diff anchor)."
+  }
+]

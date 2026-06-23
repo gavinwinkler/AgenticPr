@@ -1,0 +1,74 @@
+[
+  {
+    "Diff": "01-user-search",
+    "Findings": 5,
+    "Crit": 0,
+    "High": 3,
+    "Med": 1,
+    "Low": 1,
+    "Breaching": 3,
+    "WouldBlock": false,
+    "Failed": "",
+    "Status": "OK"
+  },
+  {
+    "Diff": "02-offer-eligibility",
+    "Findings": 5,
+    "Crit": 0,
+    "High": 3,
+    "Med": 1,
+    "Low": 1,
+    "Breaching": 3,
+    "WouldBlock": false,
+    "Failed": "",
+    "Status": "OK"
+  },
+  {
+    "Diff": "03-payment-gateway",
+    "Findings": 5,
+    "Crit": 0,
+    "High": 3,
+    "Med": 1,
+    "Low": 1,
+    "Breaching": 3,
+    "WouldBlock": false,
+    "Failed": "",
+    "Status": "OK"
+  },
+  {
+    "Diff": "04-readme",
+    "Findings": 5,
+    "Crit": 0,
+    "High": 3,
+    "Med": 1,
+    "Low": 1,
+    "Breaching": 3,
+    "WouldBlock": false,
+    "Failed": "",
+    "Status": "OK"
+  },
+  {
+    "Diff": "05-notifications",
+    "Findings": 5,
+    "Crit": 0,
+    "High": 3,
+    "Med": 1,
+    "Low": 1,
+    "Breaching": 3,
+    "WouldBlock": false,
+    "Failed": "",
+    "Status": "OK"
+  },
+  {
+    "Diff": "06-confidence-scoring",
+    "Findings": 5,
+    "Crit": 0,
+    "High": 3,
+    "Med": 1,
+    "Low": 1,
+    "Breaching": 3,
+    "WouldBlock": false,
+    "Failed": "",
+    "Status": "OK"
+  }
+]

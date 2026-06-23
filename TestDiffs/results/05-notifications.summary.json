@@ -1,0 +1,17 @@
+{
+  "label": "05-notifications",
+  "source": "mock",
+  "totalFindings": 5,
+  "bySeverity": {
+    "critical": 0,
+    "high": 3,
+    "medium": 1,
+    "low": 1
+  },
+  "breaching": 3,
+  "enforcementMode": "advisory",
+  "wouldBlock": false,
+  "failedReviewers": [],
+  "inlineComments": 0,
+  "bodyOnly": 5
+}

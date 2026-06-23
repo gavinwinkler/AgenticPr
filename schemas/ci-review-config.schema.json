@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inter.local/schemas/ci-review-config.schema.json",
+  "title": "CiReviewConfiguration",
+  "description": "Drives the CI PR review orchestrator (Invoke-CiPrReview.ps1). Enforcement posture is a configuration setting, not hard-coded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "enforcementMode",
+    "blockingSeverityThreshold",
+    "reviewers",
+    "targetLanguages",
+    "postInlineComments"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "enforcementMode": {
+      "description": "advisory = comment + non-blocking vote, pipeline always exits 0. blocking = a finding at/above blockingSeverityThreshold fails the build and casts a reject vote.",
+      "type": "string",
+      "enum": ["advisory", "blocking"]
+    },
+    "blockingSeverityThreshold": {
+      "description": "Only meaningful when enforcementMode = blocking.",
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "reviewers": {
+      "description": "The diff-only trio. No GavinBrain dependency.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["blind-hunter", "edge-case-hunter", "code-reviewer"]
+      }
+    },
+    "targetLanguages": {
+      "description": "Languages the reviewers should expect and apply rules for. Passed into each reviewer prompt.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["csharp", "typescript"]
+      }
+    },
+    "postInlineComments": {
+      "description": "When true, each finding is posted as an Azure DevOps PR thread.",
+      "type": "boolean"
+    },
+    "reconcilePriorBotThreads": {
+      "description": "When true, prior bot-authored threads tagged with botThreadMarker are resolved before posting a new round, preventing duplicate-comment spam on re-push.",
+      "type": "boolean",
+      "default": true
+    },
+    "botThreadMarker": {
+      "description": "Hidden marker prepended to bot threads so they can be reconciled across runs.",
+      "type": "string",
+      "default": "[ci-review]"
+    },
+    "maxDiffBytes": {
+      "description": "Diffs larger than this are truncated before being handed to reviewers (cost/latency guard). Truncation is logged, never silent.",
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

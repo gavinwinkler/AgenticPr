@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inter.local/schemas/ci-review-finding.schema.json",
+  "title": "CiReviewFinding",
+  "description": "Normalized finding envelope all three reviewers map onto, so blind-hunter / edge-case-hunter / code-reviewer outputs are handled uniformly by the orchestrator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reviewer", "severity", "filePath", "title", "detail"],
+  "properties": {
+    "reviewer": {
+      "type": "string",
+      "enum": ["blind-hunter", "edge-case-hunter", "code-reviewer"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "filePath": {
+      "description": "Repository-root-relative path of the changed file the finding applies to.",
+      "type": "string",
+      "minLength": 1
+    },
+    "line": {
+      "description": "1-based line in the file's post-change content. Null for file-level findings.",
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "detail": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ruleId": {
+      "description": "Optional identifier of the violated hard rule or check (e.g. 'hard-rule-3-uuidv7').",
+      "type": ["string", "null"]
+    }
+  }
+}

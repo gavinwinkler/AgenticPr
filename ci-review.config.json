@@ -1,0 +1,11 @@
+{
+  "$schema": "./schemas/ci-review-config.schema.json",
+  "enforcementMode": "advisory",
+  "blockingSeverityThreshold": "high",
+  "reviewers": ["blind-hunter", "edge-case-hunter", "code-reviewer"],
+  "targetLanguages": ["csharp", "typescript"],
+  "postInlineComments": true,
+  "reconcilePriorBotThreads": true,
+  "botThreadMarker": "[ci-review]",
+  "maxDiffBytes": 500000
+}

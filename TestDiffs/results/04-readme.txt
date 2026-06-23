@@ -1,0 +1,43 @@
+
+=== CI PR Review - DRY RUN ===
+Config        : C:\Development\inter\ci-review.config.json
+Mode          : advisory / threshold high
+Languages     : csharp, typescript
+Reviewers     : blind-hunter, edge-case-hunter, code-reviewer
+Repo root     : C:\Development\inter
+Diff          : 1055 bytes, 1 changed file(s)
+Source        : MOCK (samples\mock-findings.json)
+
+=== Findings (5) ===
+[high    ] blind-hunter     src/Orders/Services/OrderService.cs:12
+            Guid.NewGuid() forbidden
+            Use Guid.CreateVersion7() (UUIDv7).
+[high    ] code-reviewer    src/Orders/Services/OrderService.cs:17
+            Empty catch swallows exception
+            Log with a correlationId and rethrow; do not silently suppress.
+[high    ] code-reviewer    src/web/userClient.ts:7
+            crypto.randomUUID() is UUIDv4
+            Use a UUIDv7 generator (e.g. uuidv7()).
+[medium  ] edge-case-hunter src/web/userClient.ts:8
+            Swallowed promise rejection
+            POST failure is dropped by .catch(() => {}); surface or handle it.
+[low     ] code-reviewer    docs/onboarding.md
+            File-level finding without a line
+            Exercises the body-only path (no inline diff anchor).
+
+=== Gate decision ===
+enforcementMode : advisory
+findings        : 5  (breaching >= high: 3)
+WOULD BLOCK     : no (check passes, exit 0)
+
+=== GitHub post preview (NOT sent) ===
+review event    : COMMENT
+inline comments : 0
+body-only items : 5
+  body    - ?? **[blind-hunter/high]** `src/Orders/Services/OrderService.cs:12` - Guid.NewGuid() forbidden
+  body    - ?? **[code-reviewer/high]** `src/Orders/Services/OrderService.cs:17` - Empty catch swallows exception
+  body    - ?? **[code-reviewer/high]** `src/web/userClient.ts:7` - crypto.randomUUID() is UUIDv4
+  body    - ?? **[edge-case-hunter/medium]** `src/web/userClient.ts:8` - Swallowed promise rejection
+  body    - ?? **[code-reviewer/low]** `docs/onboarding.md` - File-level finding without a line
+
+Findings written to C:\Development\inter\TestDiffs\results\04-readme.findings.json
